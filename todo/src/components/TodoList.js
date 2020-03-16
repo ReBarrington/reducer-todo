@@ -1,11 +1,10 @@
 import React, { useState, useReducer } from 'react';
-import { reducer, initialState } from '../reducers/reducer';
-import Todo from "./Todo";
+import { newNoteReducer, initialState } from '../reducers/newNoteReducer';
 
 const TodoList = () => {
 
     // setting up state using the reducer hook:
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(newNoteReducer, initialState);
 
     // setting up initial state for new todo text:
     const [newTodoText, setNewTodoText] = useState('');
@@ -32,7 +31,9 @@ const TodoList = () => {
                     }}
                 >Add New Todo</button>
                 {state.map(note => (
-                      <Todo item={note.item} completed={note.completed} id={note.id}/>
+                    <div className='note'>
+                        <h3>{note.item}</h3>
+                    </div>
                 ))}
             </div>
         </div>

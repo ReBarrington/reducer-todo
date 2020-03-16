@@ -5,7 +5,7 @@ export const initialState = [{
     id: 0
 }]
 
-export const reducer = (state, action) => {
+export const newNoteReducer = (state, action) => {
     console.log(action, ' is action')
     switch (action.type) {
         case "NEW_TODO":
