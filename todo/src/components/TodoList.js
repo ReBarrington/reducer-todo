@@ -26,11 +26,14 @@ const TodoList = () => {
                     onChange={handleChanges}
                 />
                 <button
-                    onClick={() => 
-                        dispatch({ type: 'UPDATE_TODO', payload: newTodoText })
-                    }
+                    onClick={() => {
+                        dispatch({ type: 'NEW_TODO', payload: newTodoText })
+                        console.log(state, ' state')
+                    }}
                 >Add New Todo</button>
-                <Todo item={state.item} completed={state.completed} id={state.id}/>
+                {state.map(note => (
+                      <Todo item={note.item} completed={note.completed} id={note.id}/>
+                ))}
             </div>
         </div>
     )
