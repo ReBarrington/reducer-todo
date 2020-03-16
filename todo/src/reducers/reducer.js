@@ -8,14 +8,10 @@ export const innitialState = {
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        case "CASE1":
+        case "NEW_TODO":
             return {
                 ...state
             }
-        case "CASE2":
-                return {
-                    ...state
-                }
         default:
             return state;
     }
