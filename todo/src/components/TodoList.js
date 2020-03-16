@@ -1,10 +1,11 @@
 import React, { useState, useReducer } from 'react';
-import { newNoteReducer, initialState } from '../reducers/newNoteReducer';
+import { reducer, initialState } from '../reducers/reducer';
+import '../App.css';
 
 const TodoList = () => {
 
     // setting up state using the reducer hook:
-    const [state, dispatch] = useReducer(newNoteReducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     // setting up initial state for new todo text:
     const [newTodoText, setNewTodoText] = useState('');
@@ -12,6 +13,7 @@ const TodoList = () => {
     const handleChanges = e => {
         setNewTodoText(e.target.value);
     };
+
 
     return (
         <div className='todo-list'>
@@ -27,14 +29,28 @@ const TodoList = () => {
                 <button
                     onClick={() => {
                         dispatch({ type: 'NEW_TODO', payload: newTodoText })
-                        console.log(state, ' state')
+                        setNewTodoText('');
                     }}
                 >Add New Todo</button>
-                {state.map(note => (
-                    <div className='note'>
+
+                <button 
+                    onClick={() => {
+                        dispatch({ type: 'CLEAR_COMPLETED' })
+                    }}
+                >Clear Completed</button>
+
+                {state.map((note, index) => (
+                    <div 
+                        // className={`note${note.completed ? " completed" : ""}`}
+                        key={note.id}
+                        onClick={() => {
+                            dispatch({ type: 'TOGGLE_COMPLETE', index: index })
+                        }}
+                    >
                         <h3>{note.item}</h3>
                     </div>
                 ))}
+
             </div>
         </div>
     )
