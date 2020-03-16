@@ -28,7 +28,7 @@ export const reducer = (state, action) => {
             return newState
         case "CLEAR_COMPLETED":
             console.log(state, ' state in CLEAR_COMPLETED')
-            state.filter(todo => !todo.completed)
+            return state.filter(todo => !todo.completed)
         default:
             return state;
     }

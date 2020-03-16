@@ -41,7 +41,7 @@ const TodoList = () => {
 
                 {state.map((note, index) => (
                     <div 
-                        // className={`note${note.completed ? " completed" : ""}`}
+                        className={`${note.completed ? "completed" : ""}`}
                         key={note.id}
                         onClick={() => {
                             dispatch({ type: 'TOGGLE_COMPLETE', index: index })
